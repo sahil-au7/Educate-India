@@ -24,11 +24,16 @@ services.createNotes = (req,data,id) =>
 
 //==========================================Update Notes Detail Service==========================================
 
-services.updateNotes = (id,data) =>
+services.updateNotes = (req,data,id) =>
   new Promise(async (res, rej) => {
-      try {
+    try {
 
-        const notes = await Notes.findByIdAndUpdate(id, { ...data }, {new: true})
+      const newData = {
+        text: data.text,
+        user: req._id,
+        course: id
+      }
+      const notes = await Notes.findOneAndUpdate({ user: req._id, course: id }, { ...data }, { upsert: true ,  new: true })
 
       res(notes);
     } catch (e) {

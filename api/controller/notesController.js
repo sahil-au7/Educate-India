@@ -19,7 +19,7 @@ controller.createNotes = async (req, res) => {
 //UPDATE Notes
 controller.updateNotes = async (req, res) => {
     try {
-        const notes = await service.updateNotes(req.params.id, req.body);
+        const notes = await service.updateNotes(req, req.body,req.params.id,);
 
         res.status(201).json(notes);
     } catch (e) {
