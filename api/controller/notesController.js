@@ -31,7 +31,7 @@ controller.updateNotes = async (req, res) => {
 controller.getNotes = async (req, res) => {
   try {
     //Get Notes
-    const notes = await service.getNotes(req.params.id);
+    const notes = await service.getNotes(req,req.params.id);
 
     res.status(201).json(notes);
   } catch (e) {

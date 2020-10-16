@@ -44,10 +44,10 @@ services.updateNotes = (req,data,id) =>
 
 
 //==========================================Get Notes Service==========================================
-services.getNotes = (id) =>
+services.getNotes = (req,id) =>
   new Promise(async (res, rej) => {
     try {
-      const notes = await Notes.findById(id);
+      const notes = await Notes.findOne({user:req._id, course:id});
 
       res(notes);
     } catch (e) {
