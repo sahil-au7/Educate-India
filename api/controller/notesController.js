@@ -33,7 +33,7 @@ controller.getNotes = async (req, res) => {
     //Get Notes
     const notes = await service.getNotes(req,req.params.id);
 
-    res.status(201).json(notes);
+    res.status(200).json(notes);
   } catch (e) {
     handleErrors(e, res);
   }

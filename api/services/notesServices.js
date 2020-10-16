@@ -47,7 +47,13 @@ services.updateNotes = (req,data,id) =>
 services.getNotes = (req,id) =>
   new Promise(async (res, rej) => {
     try {
-      const notes = await Notes.findOne({user:req._id, course:id});
+      const notes = await Notes.findOne({ user: req._id, course: id });
+      if (!notes) {
+        const obj = {
+          text:""
+        }
+        res(obj)
+      }
 
       res(notes);
     } catch (e) {
